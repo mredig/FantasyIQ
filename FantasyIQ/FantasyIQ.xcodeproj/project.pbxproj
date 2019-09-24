@@ -1,0 +1,645 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EFF425D62339694A0047A815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425D52339694A0047A815 /* AppDelegate.swift */; };
+		EFF425D82339694A0047A815 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425D72339694A0047A815 /* SceneDelegate.swift */; };
+		EFF425DA2339694A0047A815 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425D92339694A0047A815 /* ContentView.swift */; };
+		EFF425DC2339694D0047A815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF425DB2339694D0047A815 /* Assets.xcassets */; };
+		EFF425DF2339694D0047A815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF425DE2339694D0047A815 /* Preview Assets.xcassets */; };
+		EFF425E22339694D0047A815 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFF425E02339694D0047A815 /* LaunchScreen.storyboard */; };
+		EFF425ED2339694D0047A815 /* FantasyIQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425EC2339694D0047A815 /* FantasyIQTests.swift */; };
+		EFF425F82339694D0047A815 /* FantasyIQUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425F72339694D0047A815 /* FantasyIQUITests.swift */; };
+		EFF42606233969700047A815 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFF42605233969700047A815 /* Main.storyboard */; };
+		EFF4260823396ABA0047A815 /* AppearanceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4260723396AB90047A815 /* AppearanceHelper.swift */; };
+		EFF4260C2339912B0047A815 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4260B2339912B0047A815 /* Team.swift */; };
+		EFF4260E233991340047A815 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4260D233991340047A815 /* Player.swift */; };
+		EFF42612233991770047A815 /* FantasyIQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF42611233991770047A815 /* FantasyIQController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EFF425E92339694D0047A815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFF425CA2339694A0047A815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFF425D12339694A0047A815;
+			remoteInfo = FantasyIQ;
+		};
+		EFF425F42339694D0047A815 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFF425CA2339694A0047A815 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFF425D12339694A0047A815;
+			remoteInfo = FantasyIQ;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EFF425D22339694A0047A815 /* FantasyIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FantasyIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFF425D52339694A0047A815 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EFF425D72339694A0047A815 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EFF425D92339694A0047A815 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFF425DB2339694D0047A815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFF425DE2339694D0047A815 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EFF425E12339694D0047A815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EFF425E32339694D0047A815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFF425E82339694D0047A815 /* FantasyIQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantasyIQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFF425EC2339694D0047A815 /* FantasyIQTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyIQTests.swift; sourceTree = "<group>"; };
+		EFF425EE2339694D0047A815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFF425F32339694D0047A815 /* FantasyIQUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantasyIQUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFF425F72339694D0047A815 /* FantasyIQUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyIQUITests.swift; sourceTree = "<group>"; };
+		EFF425F92339694D0047A815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFF42605233969700047A815 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EFF4260723396AB90047A815 /* AppearanceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppearanceHelper.swift; path = ../../../../playerIQ/playerIQ/Helpers/AppearanceHelper.swift; sourceTree = "<group>"; };
+		EFF4260A233983DF0047A815 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
+		EFF4260B2339912B0047A815 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		EFF4260D233991340047A815 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		EFF42611233991770047A815 /* FantasyIQController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyIQController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFF425CF2339694A0047A815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425E52339694D0047A815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425F02339694D0047A815 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFF425C92339694A0047A815 = {
+			isa = PBXGroup;
+			children = (
+				EFF425D42339694A0047A815 /* FantasyIQ */,
+				EFF425EB2339694D0047A815 /* FantasyIQTests */,
+				EFF425F62339694D0047A815 /* FantasyIQUITests */,
+				EFF425D32339694A0047A815 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EFF425D32339694A0047A815 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFF425D22339694A0047A815 /* FantasyIQ.app */,
+				EFF425E82339694D0047A815 /* FantasyIQTests.xctest */,
+				EFF425F32339694D0047A815 /* FantasyIQUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFF425D42339694A0047A815 /* FantasyIQ */ = {
+			isa = PBXGroup;
+			children = (
+				EFF425D52339694A0047A815 /* AppDelegate.swift */,
+				EFF42610233991580047A815 /* ModelControllers */,
+				EFF4260F2339913B0047A815 /* Models */,
+				EFF42609233983DF0047A815 /* Helpers */,
+				EFF4260723396AB90047A815 /* AppearanceHelper.swift */,
+				EFF425D72339694A0047A815 /* SceneDelegate.swift */,
+				EFF425D92339694A0047A815 /* ContentView.swift */,
+				EFF425DB2339694D0047A815 /* Assets.xcassets */,
+				EFF425E02339694D0047A815 /* LaunchScreen.storyboard */,
+				EFF42605233969700047A815 /* Main.storyboard */,
+				EFF425E32339694D0047A815 /* Info.plist */,
+				EFF425DD2339694D0047A815 /* Preview Content */,
+			);
+			path = FantasyIQ;
+			sourceTree = "<group>";
+		};
+		EFF425DD2339694D0047A815 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EFF425DE2339694D0047A815 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EFF425EB2339694D0047A815 /* FantasyIQTests */ = {
+			isa = PBXGroup;
+			children = (
+				EFF425EC2339694D0047A815 /* FantasyIQTests.swift */,
+				EFF425EE2339694D0047A815 /* Info.plist */,
+			);
+			path = FantasyIQTests;
+			sourceTree = "<group>";
+		};
+		EFF425F62339694D0047A815 /* FantasyIQUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EFF425F72339694D0047A815 /* FantasyIQUITests.swift */,
+				EFF425F92339694D0047A815 /* Info.plist */,
+			);
+			path = FantasyIQUITests;
+			sourceTree = "<group>";
+		};
+		EFF42609233983DF0047A815 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EFF4260A233983DF0047A815 /* AppearanceHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EFF4260F2339913B0047A815 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EFF4260B2339912B0047A815 /* Team.swift */,
+				EFF4260D233991340047A815 /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EFF42610233991580047A815 /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EFF42611233991770047A815 /* FantasyIQController.swift */,
+			);
+			path = ModelControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFF425D12339694A0047A815 /* FantasyIQ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFF425FC2339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQ" */;
+			buildPhases = (
+				EFF425CE2339694A0047A815 /* Sources */,
+				EFF425CF2339694A0047A815 /* Frameworks */,
+				EFF425D02339694A0047A815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FantasyIQ;
+			productName = FantasyIQ;
+			productReference = EFF425D22339694A0047A815 /* FantasyIQ.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EFF425E72339694D0047A815 /* FantasyIQTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFF425FF2339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQTests" */;
+			buildPhases = (
+				EFF425E42339694D0047A815 /* Sources */,
+				EFF425E52339694D0047A815 /* Frameworks */,
+				EFF425E62339694D0047A815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFF425EA2339694D0047A815 /* PBXTargetDependency */,
+			);
+			name = FantasyIQTests;
+			productName = FantasyIQTests;
+			productReference = EFF425E82339694D0047A815 /* FantasyIQTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EFF425F22339694D0047A815 /* FantasyIQUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFF426022339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQUITests" */;
+			buildPhases = (
+				EFF425EF2339694D0047A815 /* Sources */,
+				EFF425F02339694D0047A815 /* Frameworks */,
+				EFF425F12339694D0047A815 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFF425F52339694D0047A815 /* PBXTargetDependency */,
+			);
+			name = FantasyIQUITests;
+			productName = FantasyIQUITests;
+			productReference = EFF425F32339694D0047A815 /* FantasyIQUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFF425CA2339694A0047A815 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Luqmaan Khan";
+				TargetAttributes = {
+					EFF425D12339694A0047A815 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					EFF425E72339694D0047A815 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = EFF425D12339694A0047A815;
+					};
+					EFF425F22339694D0047A815 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = EFF425D12339694A0047A815;
+					};
+				};
+			};
+			buildConfigurationList = EFF425CD2339694A0047A815 /* Build configuration list for PBXProject "FantasyIQ" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFF425C92339694A0047A815;
+			productRefGroup = EFF425D32339694A0047A815 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFF425D12339694A0047A815 /* FantasyIQ */,
+				EFF425E72339694D0047A815 /* FantasyIQTests */,
+				EFF425F22339694D0047A815 /* FantasyIQUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFF425D02339694A0047A815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFF425E22339694D0047A815 /* LaunchScreen.storyboard in Resources */,
+				EFF425DF2339694D0047A815 /* Preview Assets.xcassets in Resources */,
+				EFF425DC2339694D0047A815 /* Assets.xcassets in Resources */,
+				EFF42606233969700047A815 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425E62339694D0047A815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425F12339694D0047A815 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFF425CE2339694A0047A815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFF425D62339694A0047A815 /* AppDelegate.swift in Sources */,
+				EFF4260823396ABA0047A815 /* AppearanceHelper.swift in Sources */,
+				EFF425D82339694A0047A815 /* SceneDelegate.swift in Sources */,
+				EFF42612233991770047A815 /* FantasyIQController.swift in Sources */,
+				EFF4260C2339912B0047A815 /* Team.swift in Sources */,
+				EFF4260E233991340047A815 /* Player.swift in Sources */,
+				EFF425DA2339694A0047A815 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425E42339694D0047A815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFF425ED2339694D0047A815 /* FantasyIQTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFF425EF2339694D0047A815 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFF425F82339694D0047A815 /* FantasyIQUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFF425EA2339694D0047A815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFF425D12339694A0047A815 /* FantasyIQ */;
+			targetProxy = EFF425E92339694D0047A815 /* PBXContainerItemProxy */;
+		};
+		EFF425F52339694D0047A815 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFF425D12339694A0047A815 /* FantasyIQ */;
+			targetProxy = EFF425F42339694D0047A815 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EFF425E02339694D0047A815 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFF425E12339694D0047A815 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EFF425FA2339694D0047A815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EFF425FB2339694D0047A815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EFF425FD2339694D0047A815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FantasyIQ/Preview Content\"";
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FantasyIQ/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EFF425FE2339694D0047A815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"FantasyIQ/Preview Content\"";
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = FantasyIQ/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EFF426002339694D0047A815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = FantasyIQTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FantasyIQ.app/FantasyIQ";
+			};
+			name = Debug;
+		};
+		EFF426012339694D0047A815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = FantasyIQTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FantasyIQ.app/FantasyIQ";
+			};
+			name = Release;
+		};
+		EFF426032339694D0047A815 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = FantasyIQUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FantasyIQ;
+			};
+			name = Debug;
+		};
+		EFF426042339694D0047A815 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VXUQXR6S56;
+				INFOPLIST_FILE = FantasyIQUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luqmaankhan.FantasyIQUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FantasyIQ;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFF425CD2339694A0047A815 /* Build configuration list for PBXProject "FantasyIQ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFF425FA2339694D0047A815 /* Debug */,
+				EFF425FB2339694D0047A815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFF425FC2339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQ" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFF425FD2339694D0047A815 /* Debug */,
+				EFF425FE2339694D0047A815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFF425FF2339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFF426002339694D0047A815 /* Debug */,
+				EFF426012339694D0047A815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFF426022339694D0047A815 /* Build configuration list for PBXNativeTarget "FantasyIQUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFF426032339694D0047A815 /* Debug */,
+				EFF426042339694D0047A815 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFF425CA2339694A0047A815 /* Project object */;
+}
