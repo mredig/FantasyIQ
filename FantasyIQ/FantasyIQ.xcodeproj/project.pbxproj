@@ -16,7 +16,6 @@
 		EFF425ED2339694D0047A815 /* FantasyIQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425EC2339694D0047A815 /* FantasyIQTests.swift */; };
 		EFF425F82339694D0047A815 /* FantasyIQUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425F72339694D0047A815 /* FantasyIQUITests.swift */; };
 		EFF42606233969700047A815 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFF42605233969700047A815 /* Main.storyboard */; };
-		EFF4260C2339912B0047A815 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4260B2339912B0047A815 /* Team.swift */; };
 		EFF4260E233991340047A815 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF4260D233991340047A815 /* Player.swift */; };
 		EFF42612233991770047A815 /* FantasyIQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF42611233991770047A815 /* FantasyIQController.swift */; };
 /* End PBXBuildFile section */
@@ -55,7 +54,6 @@
 		EFF425F92339694D0047A815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFF42605233969700047A815 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EFF4260A233983DF0047A815 /* AppearanceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceHelper.swift; sourceTree = "<group>"; };
-		EFF4260B2339912B0047A815 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		EFF4260D233991340047A815 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		EFF42611233991770047A815 /* FantasyIQController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantasyIQController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +158,6 @@
 		EFF4260F2339913B0047A815 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EFF4260B2339912B0047A815 /* Team.swift */,
 				EFF4260D233991340047A815 /* Player.swift */,
 			);
 			path = Models;
@@ -309,7 +306,6 @@
 				EFF425D62339694A0047A815 /* AppDelegate.swift in Sources */,
 				EFF425D82339694A0047A815 /* SceneDelegate.swift in Sources */,
 				EFF42612233991770047A815 /* FantasyIQController.swift in Sources */,
-				EFF4260C2339912B0047A815 /* Team.swift in Sources */,
 				EFF4260E233991340047A815 /* Player.swift in Sources */,
 				EFF425DA2339694A0047A815 /* ContentView.swift in Sources */,
 			);

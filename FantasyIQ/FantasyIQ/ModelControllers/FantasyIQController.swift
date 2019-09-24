@@ -13,6 +13,7 @@ class FantasyIQController {
     var allFantasyPlayers: [AllPossiblePlayers] = []
     var projectedSeasonStats: Player?
     var projectedGameStats: Player?
+    var team: [Player] = []
     let fantasyDataBaseURL = URL(string: "https://api.sportsdata.io/v3/nfl/")!
     
     func fetchAllPlayers(completion: @escaping ([AllPossiblePlayers]?, Error?) -> Void = {_,_ in}) {
@@ -73,9 +74,16 @@ class FantasyIQController {
         }.resume()
     }
     
+   
     
-    func calculatePlayerRating(player: Player) {
-        
+    func playerProjectedSeasonPoints(playerSeasonProjection: Player) -> Double {
+        guard let projectedFantasyPoints = playerSeasonProjection.FantasyPoints else {return 0}
+        return projectedFantasyPoints
+    }
+    
+    func playerProjectedGamePoints(playerGameProjection: Player) -> Double {
+        guard let projectedFantasyPoints = playerGameProjection.FantasyPoints else {return 0}
+        return projectedFantasyPoints
     }
     
 }

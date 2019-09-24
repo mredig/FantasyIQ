@@ -50,6 +50,7 @@ struct Player: Codable {
     var ReceivingLong: Double?
     var Fumbles: Double?
     var FumblesLost: Double?
+    var FantasyPoints: Double?
     var PuntReturns: Double?
     var PuntReturnYards: Double?
     var PuntReturnYardsPerAttempt: Double?
