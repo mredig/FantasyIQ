@@ -8,49 +8,60 @@
 
 import Foundation
 
-struct Player: Codable {
+
+struct AllPossiblePlayers: Codable {
     var PlayerID: Int
-    var Team: String
-    var Season: Int
-    var Name: String
-    var Position: String
-    var PassingAttempts: Int
-    var PassingCompletions: Int
-    var PassingYards: Int
-    var PassingCompletionPercentage: Int
-    var PassingYardsPerAttempt: Int
-    var PassingYardsperCompletion:Int
-    var PassingTouchdowns: Int
-    var PassingInterceptions: Int
-    var PassingRating: Int
-    var PassingLong: Int
-    var RushingAttempts: Int
-    var RushingYards: Int
-    var RushingYardsPerAttempt: Int
-    var RushingTouchdowns: Int
-    var RushingLong: Int
-    var ReceivingTargets: Int
-    var Receptions: Int
-    var ReceivingYards: Int
-    var ReceivingYardsPerReception: Int
-    var ReceivingTouchdowns: Int
-    var ReceivingLong: Int
-    var Fumbles: Int
-    var FumblesLost: Int
-    var PuntReturns: Int
-    var PuntReturnYards: Int
-    var PuntReturnYardsPerAttempt: Int
-    var PuntReturnTouchdowns: Int
-    var PuntReturnLong: Int
-    var KickReturns: Int
-    var KickReturnYards: Int
-    var KickReturnYardsPerAttempt: Int
-    var KickReturnTouchdowns: Int
-    var FieldGoalsMade40to49: Int
-    var FieldGoalsMade50Plus: Int
+    var Team: String?
+    var Name: String?
+    var Position: String?
+    var ByeWeek: Int?
 }
 
 
+//re edit these to only include properties related to projected season and prjected game if they are similar.
+//make them all optional except for player ID, name and positon
+struct Player: Codable {
+    var PlayerID: Int
+    var Team: String?
+    var Season: Int?
+    var Name: String?
+    var Position: String?
+    var ByeWeek: Int?
+    var PassingAttempts: Int?
+    var PassingCompletions: Int?
+    var PassingYards: Int?
+    var PassingCompletionPercentage: Int?
+    var PassingYardsPerAttempt: Int?
+    var PassingYardsperCompletion:Int?
+    var PassingTouchdowns: Int?
+    var PassingInterceptions: Int?
+    var PassingRating: Int?
+    var PassingLong: Int?
+    var RushingAttempts: Double?
+    var RushingYards: Double?
+    var RushingYardsPerAttempt: Double?
+    var RushingTouchdowns: Int?
+    var RushingLong: Int?
+    var ReceivingTargets: Double?
+    var Receptions: Int?
+    var ReceivingYards: Int?
+    var ReceivingYardsPerReception: Double?
+    var ReceivingTouchdowns: Int?
+    var ReceivingLong: Int?
+    var Fumbles: Int?
+    var FumblesLost: Int?
+    var PuntReturns: Int?
+    var PuntReturnYards: Int?
+    var PuntReturnYardsPerAttempt: Int?
+    var PuntReturnTouchdowns: Int?
+    var PuntReturnLong: Int?
+    var KickReturns: Int?
+    var KickReturnYards: Int?
+    var KickReturnYardsPerAttempt: Int?
+    var KickReturnTouchdowns: Int?
+    var FieldGoalsMade40to49: Int?
+    var FieldGoalsMade50Plus: Int?
+  }
 struct Defense: Codable {
     var Season: Int
     var Week: Int
