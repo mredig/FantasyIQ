@@ -43,24 +43,24 @@ struct Player: Codable {
     var RushingTouchdowns: Int?
     var RushingLong: Int?
     var ReceivingTargets: Double?
-    var Receptions: Int?
-    var ReceivingYards: Int?
+    var Receptions: Double?
+    var ReceivingYards: Double?
     var ReceivingYardsPerReception: Double?
-    var ReceivingTouchdowns: Int?
-    var ReceivingLong: Int?
-    var Fumbles: Int?
-    var FumblesLost: Int?
-    var PuntReturns: Int?
-    var PuntReturnYards: Int?
-    var PuntReturnYardsPerAttempt: Int?
-    var PuntReturnTouchdowns: Int?
-    var PuntReturnLong: Int?
-    var KickReturns: Int?
-    var KickReturnYards: Int?
-    var KickReturnYardsPerAttempt: Int?
-    var KickReturnTouchdowns: Int?
-    var FieldGoalsMade40to49: Int?
-    var FieldGoalsMade50Plus: Int?
+    var ReceivingTouchdowns: Double?
+    var ReceivingLong: Double?
+    var Fumbles: Double?
+    var FumblesLost: Double?
+    var PuntReturns: Double?
+    var PuntReturnYards: Double?
+    var PuntReturnYardsPerAttempt: Double?
+    var PuntReturnTouchdowns: Double?
+    var PuntReturnLong: Double?
+    var KickReturns: Double?
+    var KickReturnYards: Double??
+    var KickReturnYardsPerAttempt: Double?
+    var KickReturnTouchdowns: Double?
+    var FieldGoalsMade40to49: Double?
+    var FieldGoalsMade50Plus: Double?
   }
 struct Defense: Codable {
     var Season: Int
