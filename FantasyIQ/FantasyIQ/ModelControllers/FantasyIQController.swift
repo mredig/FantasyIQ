@@ -9,14 +9,14 @@
 import Foundation
 
 class FantasyIQController {
-    
+    //  THE CORE DATA OBJECT WILL HAVE JUST A TEAM OF PLAYERS WITH POSITONS AND ID, BASIC INFO, IT CAN BE REFRESHED AND UPDATED
     var allFantasyPlayers: [AllPossiblePlayers] = []
     var projectedSeasonStats: Player?
     var projectedGameStats: Player?
     var team: [Player] = []
     var currentWeek: Int?
     var upComingWeek: Int?
-    var playerGameStats: Player?
+    var currentPlayerGameStats: CurrentPlayerStats?
     let fantasyDataBaseURL = URL(string: "https://api.sportsdata.io/v3/nfl/")!
     
     func fetchAllPlayers(completion: @escaping ([AllPossiblePlayers]?, Error?) -> Void = {_,_ in}) {
@@ -75,7 +75,7 @@ class FantasyIQController {
         }.resume()
     }
     
-    func fetchPlayerGameStats(playerID: Int?, completion: @escaping(Player?, Error?) -> Void = {_,_ in}) {
+    func fetchCurrentPlayerGameStats(playerID: Int?, completion: @escaping(CurrentPlayerStats?, Error?) -> Void = {_,_ in}) {
         guard let id = playerID, let week = currentWeek else {return}
         let requestURL = fantasyDataBaseURL.appendingPathComponent("stats").appendingPathComponent("json").appendingPathComponent("PlayerGameStatsByPlayerID").appendingPathComponent("2019REG").appendingPathComponent("\(week)").appendingPathComponent("\(id)")
         var request = URLRequest(url: requestURL)
@@ -92,11 +92,14 @@ class FantasyIQController {
                 return
             }
             do {
-                
+                self.currentPlayerGameStats = try JSONDecoder().decode(CurrentPlayerStats.self, from: data)
+                completion(self.currentPlayerGameStats, nil)
             } catch {
-                
+                NSLog("Error decoding current player game stats:\(error)")
+                completion(nil, error)
+                return
             }
-        }
+        }.resume()
     }
     
     func fetchCurrentWeek(completion: @escaping(Int?,Error?) -> Void = {_,_ in}) {
@@ -151,83 +154,117 @@ class FantasyIQController {
         }.resume()
     }
     
-}
-
-
-
-func playerProjectedSeasonPoints(playerSeasonProjection: Player) -> Double {
-    guard let projectedFantasyPoints = playerSeasonProjection.FantasyPoints else {return 0}
-    return projectedFantasyPoints
-}
-
-func playerProjectedGamePoints(playerGameProjection: Player) -> Double {
-    guard let projectedFantasyPoints = playerGameProjection.FantasyPoints else {return 0}
-    return projectedFantasyPoints
-}
-
-func calculateDepthChartRankingForQB(team: [Player]) -> String {
-    let allQBs = team.filter{$0.Position!.contains("QB")}
-    for qb in allQBs {
-        guard let seasonFantasyPoints = qb.FantasyPoints else { NSLog("Error getting qb depth ranking");return ""}
-        if seasonFantasyPoints >= 300.0 && allQBs.count >= 2 {
-            return "Strong"
-        } else if seasonFantasyPoints >= 200.0 && seasonFantasyPoints < 300 && allQBs.count < 2 {
-            return "Medium"
-        } else {
-            return "Weak"
-        }
-    }
-    return ""
-}
-
-
-func calculateDepthChartRankingForWR(team: [Player]) -> String {
-    let allwrs = team.filter{$0.Position!.contains("WR")}
-    for wr in allwrs {
-        guard let seasonFantasyPoints = wr.FantasyPoints else { NSLog("Error getting WR depth ranking");return ""}
-        if seasonFantasyPoints >= 250.0 && allwrs.count >= 2 {
-            return "Strong"
-        } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allwrs.count < 2 && allwrs.count > 0 {
-            return "Medium"
-        } else {
-            return "Weak"
-        }
-    }
-    return ""
-}
-
-func calculateDepthChartRankingForRB(team: [Player]) -> String {
-    let allrbs = team.filter{$0.Position!.contains("RB")}
-    for rb in allrbs {
-        guard let seasonFantasyPoints = rb.FantasyPoints else { NSLog("Error getting RB depth ranking");return ""}
-        if seasonFantasyPoints >= 250.0 && allrbs.count >= 2 {
-            return "Strong"
-        } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allrbs.count < 2 && allrbs.count > 0 {
-            return "Medium"
-        } else {
-            return "Weak"
-        }
-    }
-    return ""
-}
-
-func calculateTradeCombinations(team: [Player]) -> String {
+    func fetchUpcomingWeek(playerID: Int, completion: @escaping(Player?,Error?) -> Void = {_,_ in}) {
+        guard let week = currentWeek else {return}
+        let requestURL = fantasyDataBaseURL.appendingPathComponent("projections").appendingPathComponent("json").appendingPathComponent("PlayerGameProjectionStatsByPlayerID").appendingPathComponent("2019REG").appendingPathComponent("\(week)").appendingPathComponent("\(playerID)")
+           var request = URLRequest(url: requestURL)
+           request.setValue("b01c6298fc2d438189d7664eded318c9", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+           URLSession.shared.dataTask(with: request) { (data, _, error) in
+               if let error = error {
+                   NSLog("Error fetching projected game: \(error)")
+                   completion(nil,error)
+                   return
+               }
+               guard let data = data else {
+                   NSLog("Error with data for projected game")
+                   completion(nil,error)
+                   return
+               }
+               do {
+                   self.projectedGameStats = try JSONDecoder().decode(Player.self, from: data)
+                   completion(self.projectedGameStats, nil)
+               } catch {
+                   NSLog("Error decoding projected stats :\(error)")
+                   completion(nil,error)
+                   return
+               }
+           }.resume()
+       }
     
-    if calculateDepthChartRankingForQB(team: team) == "Weak" {
-        return "Trade one high value player or two medium valued players for a QB"
-    } else if  calculateDepthChartRankingForRB(team: team) == "Weak" {
-        return "Trade one high value player or two medium valued players for a RB"
-    } else if calculateDepthChartRankingForWR(team: team) == "Weak" {
-        return "Trade one high value player or two medium valued players for a WR"
+    func playerProjectedSeasonPoints(playerSeasonProjection: Player) -> Double {
+        guard let projectedFantasyPoints = playerSeasonProjection.FantasyPoints else {return 0}
+        return projectedFantasyPoints
     }
-    return ""
-}
-
-func calculateWaiverNeed(playerCurrentStats: Player?, playerSeasonStats: Player?, allPlayers: [AllPossiblePlayers]) -> String {
-    guard let position = playerCurrentStats?.Position, let currentStats = playerCurrentStats?.FantasyPoints, let playerSeasonStats = playerSeasonStats?.FantasyPoints else {return ""}
     
-    if position == "QB" && currentStats > 23.0 && playerSeasonStats <= 215 {
+    func playerProjectedGamePoints(playerGameProjection: Player) -> Double {
+        guard let projectedFantasyPoints = playerGameProjection.FantasyPoints else {return 0}
+        return projectedFantasyPoints
+    }
+    
+    func calculateDepthChartRankingForQB(team: [Player]) -> String {
+        let allQBs = team.filter{$0.Position!.contains("QB")}
+        for qb in allQBs {
+            guard let seasonFantasyPoints = qb.FantasyPoints else { NSLog("Error getting qb depth ranking");return ""}
+            if seasonFantasyPoints >= 300.0 && allQBs.count >= 2 {
+                return "Strong"
+            } else if seasonFantasyPoints >= 200.0 && seasonFantasyPoints < 300 && allQBs.count < 2 {
+                return "Medium"
+            } else {
+                return "Weak"
+            }
+        }
+        return ""
+    }
+    
+    
+    func calculateDepthChartRankingForWR(team: [Player]) -> String {
+        let allwrs = team.filter{$0.Position!.contains("WR")}
+        for wr in allwrs {
+            guard let seasonFantasyPoints = wr.FantasyPoints else { NSLog("Error getting WR depth ranking");return ""}
+            if seasonFantasyPoints >= 250.0 && allwrs.count >= 2 {
+                return "Strong"
+            } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allwrs.count < 2 && allwrs.count > 0 {
+                return "Medium"
+            } else {
+                return "Weak"
+            }
+        }
+        return ""
+    }
+    
+    func calculateDepthChartRankingForRB(team: [Player]) -> String {
+        let allrbs = team.filter{$0.Position!.contains("RB")}
+        for rb in allrbs {
+            guard let seasonFantasyPoints = rb.FantasyPoints else { NSLog("Error getting RB depth ranking");return ""}
+            if seasonFantasyPoints >= 250.0 && allrbs.count >= 2 {
+                return "Strong"
+            } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allrbs.count < 2 && allrbs.count > 0 {
+                return "Medium"
+            } else {
+                return "Weak"
+            }
+        }
+        return ""
+    }
+    
+    func calculateTradeCombinations(team: [Player]) -> String {
         
+        if calculateDepthChartRankingForQB(team: team) == "Weak" {
+            return "Trade one high value player or two medium valued players for a QB"
+        } else if  calculateDepthChartRankingForRB(team: team) == "Weak" {
+            return "Trade one high value player or two medium valued players for a RB"
+        } else if calculateDepthChartRankingForWR(team: team) == "Weak" {
+            return "Trade one high value player or two medium valued players for a WR"
+        }
+        return ""
     }
-}
-
+    
+    func calculatePotentialBreakoutPlayers(allPlayers: [AllPossiblePlayers]) -> String {
+        var playerGameStats: [CurrentPlayerStats] = []
+        for n in allPlayers {
+            
+            fetchCurrentPlayerGameStats(playerID: n.PlayerID) { (currentplayerstats, error) in
+                guard let playerStats = currentplayerstats else {return}
+                playerGameStats.append(playerStats)
+            }
+        }
+            for player in playerGameStats {
+                guard let points = player.FantasyPoints else {return ""}
+                if points >= 17.0 {
+                    return "\(player.Name) is having a breakout game!"
+                }
+            }
+        
+        return ""
+        }
+    }

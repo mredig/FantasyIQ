@@ -17,9 +17,19 @@ struct AllPossiblePlayers: Codable {
     var ByeWeek: Int?
 }
 
+struct CurrentPlayerStats: Codable {
+    var Team: String
+    var PlayerID: Int?
+    var Opponent: String
+    var HomeOrAway: String
+    var Number: Int?
+    var Name: String
+    var Position: String
+    var Activated: Int?
+    var FantasyPoints: Double?
+}
 
-//re edit these to only include properties related to projected season and prjected game if they are similar.
-//make them all optional except for player ID, name and positon
+
 struct Player: Codable {
     var PlayerID: Int
     var Team: String?
