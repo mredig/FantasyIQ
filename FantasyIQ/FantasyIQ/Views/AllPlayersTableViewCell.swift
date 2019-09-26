@@ -16,9 +16,11 @@ class AllPlayersTableViewCell: UITableViewCell {
     @IBOutlet var cardView: UIView!
     @IBOutlet var teamLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
-
+    
+    var buttonAction: ((_ sender: AnyObject) -> Void)?
+   
     @IBAction func addPlayerTapped(_ sender: UIButton) {
-
+       self.buttonAction?(sender)
     }
     
     

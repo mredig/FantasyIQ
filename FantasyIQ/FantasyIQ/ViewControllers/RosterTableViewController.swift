@@ -11,6 +11,11 @@ import Foundation
 
 class RosterTableViewController: UITableViewController {
     
+    let fantasyController = FantasyIQController()
+    //when we fetch the players they go to the team array in the controller
+    //tableview . reload data in view did appear
+    //in data source methods use that array
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -39,6 +44,10 @@ class RosterTableViewController: UITableViewController {
     }
     
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddPlayer" {
+            guard let destinationVC = segue.destination as? AllPlayersTableViewController else {return}
+            destinationVC.fantasyController = fantasyController
+        }
      }
     
 }

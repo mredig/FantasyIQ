@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class FantasyIQController {
     var allFantasyPlayers: [AllPossiblePlayers] = []
@@ -64,7 +65,6 @@ class FantasyIQController {
             do {
                 let receivedData = try JSONDecoder().decode(SeasonProjection.self, from: data)
                 self.projectedSeasonStats = receivedData
-                self.team.append(receivedData)
                 completion(self.projectedSeasonStats, nil)
             } catch {
                 NSLog("Error decoding projected season stats: \(error)")
@@ -156,29 +156,29 @@ class FantasyIQController {
     func fetchProjectedGameStats(playerID: Int, completion: @escaping(GameProjection?,Error?) -> Void = {_,_ in}) {
         guard let week = currentWeek else {return}
         let requestURL = fantasyDataBaseURL.appendingPathComponent("projections").appendingPathComponent("json").appendingPathComponent("PlayerGameProjectionStatsByPlayerID").appendingPathComponent("2019REG").appendingPathComponent("\(week)").appendingPathComponent("\(playerID)")
-           var request = URLRequest(url: requestURL)
-           request.setValue("b01c6298fc2d438189d7664eded318c9", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
-           URLSession.shared.dataTask(with: request) { (data, _, error) in
-               if let error = error {
-                   NSLog("Error fetching projected game: \(error)")
-                   completion(nil,error)
-                   return
-               }
-               guard let data = data else {
-                   NSLog("Error with data for projected game")
-                   completion(nil,error)
-                   return
-               }
-               do {
-                   self.projectedGameStats = try JSONDecoder().decode(GameProjection.self, from: data)
-                   completion(self.projectedGameStats, nil)
-               } catch {
-                   NSLog("Error decoding projected stats :\(error)")
-                   completion(nil,error)
-                   return
-               }
-           }.resume()
-       }
+        var request = URLRequest(url: requestURL)
+        request.setValue("b01c6298fc2d438189d7664eded318c9", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                NSLog("Error fetching projected game: \(error)")
+                completion(nil,error)
+                return
+            }
+            guard let data = data else {
+                NSLog("Error with data for projected game")
+                completion(nil,error)
+                return
+            }
+            do {
+                self.projectedGameStats = try JSONDecoder().decode(GameProjection.self, from: data)
+                completion(self.projectedGameStats, nil)
+            } catch {
+                NSLog("Error decoding projected stats :\(error)")
+                completion(nil,error)
+                return
+            }
+        }.resume()
+    }
     
     func playerProjectedSeasonPoints(playerSeasonProjection: SeasonProjection) -> Double {
         guard let projectedFantasyPoints = playerSeasonProjection.FantasyPoints else {return 0}
@@ -251,19 +251,44 @@ class FantasyIQController {
     func calculatePotentialBreakoutPlayers(allPlayers: [AllPossiblePlayers]) -> String {
         var playerGameStats: [CurrentPlayerStats] = []
         for n in allPlayers {
-            
             fetchCurrentPlayerGameStats(playerID: n.PlayerID) { (currentplayerstats, error) in
                 guard let playerStats = currentplayerstats else {return}
                 playerGameStats.append(playerStats)
             }
         }
-            for player in playerGameStats {
-                guard let points = player.FantasyPoints else {return ""}
-                if points >= 17.0 {
-                    return "\(player.Name) is having a breakout game!"
+        for player in playerGameStats {
+            guard let points = player.FantasyPoints else {return ""}
+            if points >= 17.0 {
+                return "\(player.Name) is having a breakout game!"
+            }
+        }
+        return ""
+    }
+    
+//    func createTeam(with team: [SeasonProjection], completion: @escaping () -> Void) {
+//        let ref = Database.database().reference(withPath: "Team")
+//        let team = Team(identifier: UUID().uuidString, team: team)
+//        ref.setValue(team.toAnyObject())
+//        completion()
+//    }
+    
+    func fetchTeam(completion: @escaping () -> Void) {
+        let ref = Database.database().reference(withPath: "Team")
+        ref.observe(.value, with: { snapshot in
+            for playerNode in snapshot.children {
+                if let dataSnap = playerNode as? DataSnapshot,
+                    let player = SeasonProjection(snapshot: dataSnap) {
+                    self.team.append(player)
                 }
             }
-        return ""
-        }
+            completion()
+        })
     }
+    
+    func addPlayerToFirebase(with player: SeasonProjection, completion: @escaping () -> Void) {
+        let ref = Database.database().reference(withPath: "Team/\(player.identifier)")
+        ref.setValue(player.toAnyObject())
+        completion()
+    }
+}
 

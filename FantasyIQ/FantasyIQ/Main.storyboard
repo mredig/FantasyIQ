@@ -7,34 +7,48 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--All Players Table View Controller-->
+        <!--You Have 0 Players Selected-->
         <scene sceneID="adL-5b-gCG">
             <objects>
-                <tableViewController storyboardIdentifier="AllPlayersView" id="WuO-tA-UIl" customClass="AllPlayersTableViewController" customModule="FantasyIQ" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WuO-tA-UIl" customClass="AllPlayersTableViewController" customModule="FantasyIQ" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="d2a-C1-hzj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="4cd-sV-lNc">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="139"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="QlC-1K-n6L">
-                                    <rect key="frame" x="0.0" y="15" width="414" height="44"/>
+                                <searchBar contentMode="redraw" verticalCompressionResistancePriority="751" placeholder="Search Players" translatesAutoresizingMaskIntoConstraints="NO" id="QlC-1K-n6L">
+                                    <rect key="frame" x="0.0" y="2" width="414" height="56"/>
+                                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-8h-UXO">
+                                    <rect key="frame" x="125" y="81" width="164" height="30"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                    <state key="normal" title="Done">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addPlayersTapped:" destination="WuO-tA-UIl" eventType="touchUpInside" id="oab-C5-7Rf"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="QlC-1K-n6L" firstAttribute="top" secondItem="4cd-sV-lNc" secondAttribute="top" constant="15" id="2vF-UC-082"/>
+                                <constraint firstItem="QlC-1K-n6L" firstAttribute="top" secondItem="4cd-sV-lNc" secondAttribute="top" constant="2" id="2vF-UC-082"/>
+                                <constraint firstItem="RJI-8h-UXO" firstAttribute="top" secondItem="QlC-1K-n6L" secondAttribute="bottom" constant="23" id="A3n-TW-adc"/>
+                                <constraint firstAttribute="trailing" secondItem="RJI-8h-UXO" secondAttribute="trailing" constant="125" id="OYx-YK-fZw"/>
+                                <constraint firstAttribute="bottom" secondItem="RJI-8h-UXO" secondAttribute="bottom" constant="28" id="Uu0-SU-fvm"/>
                                 <constraint firstAttribute="trailing" secondItem="QlC-1K-n6L" secondAttribute="trailing" id="VKN-x6-ZZG"/>
                                 <constraint firstItem="QlC-1K-n6L" firstAttribute="leading" secondItem="4cd-sV-lNc" secondAttribute="leading" id="lmT-bB-fIR"/>
-                                <constraint firstAttribute="bottom" secondItem="QlC-1K-n6L" secondAttribute="bottom" constant="15" id="lvq-bc-KVJ"/>
+                                <constraint firstItem="RJI-8h-UXO" firstAttribute="leading" secondItem="4cd-sV-lNc" secondAttribute="leading" constant="125" id="ytD-Cg-GvZ"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllPlayerCell" rowHeight="258" id="D7r-wV-gWt" customClass="AllPlayersTableViewCell" customModule="FantasyIQ" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="102" width="414" height="258"/>
+                                <rect key="frame" x="0.0" y="167" width="414" height="258"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D7r-wV-gWt" id="Rv4-qX-gZp">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
@@ -54,7 +68,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="addPlayerTapped:" destination="D7r-wV-gWt" eventType="touchUpInside" id="flz-EG-j4S"/>
-                                                        <segue destination="h4V-Gd-NI7" kind="unwind" identifier="UnwindSegue" unwindAction="unwindtoWithSegue:" id="dqe-fb-I7H"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="0jJ-gk-Nno">
@@ -113,13 +126,13 @@
                             <outlet property="delegate" destination="WuO-tA-UIl" id="fh1-Sy-yke"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="XMB-RY-cQd"/>
+                    <navigationItem key="navigationItem" title="You Have 0 Players Selected" id="XMB-RY-cQd"/>
                     <connections>
+                        <outlet property="addPlayersButton" destination="RJI-8h-UXO" id="fE6-VO-d1x"/>
                         <outlet property="searchAllPlayers" destination="QlC-1K-n6L" id="dvX-AE-Erq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJI-Ol-Gti" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="h4V-Gd-NI7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2598.5507246376815" y="-147.32142857142856"/>
         </scene>
@@ -336,6 +349,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d3U-s3-w9A">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

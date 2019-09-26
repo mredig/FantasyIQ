@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 
 struct AllPossiblePlayers: Codable {
@@ -30,15 +31,87 @@ struct CurrentPlayerStats: Codable {
 }
 
 
-struct SeasonProjection: Codable {
+class SeasonProjection: Codable, Equatable {
+    var identifier: String?
     var PlayerID: Int
     var Team: String?
     var Season: Int?
     var Name: String?
     var Position: String?
-    var ByeWeek: Int?
     var FantasyPoints: Double?
+    
+    init(identifier: String = UUID().uuidString, PlayerID: Int, Team: String?, Season: Int?, Name: String?, Position: String?, ByeWeek: Int?, FantasyPoints: Double?) {
+        self.PlayerID = PlayerID
+        self.identifier = identifier
+        self.Team = Team
+        self.Season = Season
+        self.Name = Name
+        self.Position = Position
+        self.FantasyPoints = FantasyPoints
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let PlayerID = try container.decode(Int.self, forKey: .PlayerID)
+        let Team = try container.decode(String.self, forKey: .Team)
+        let Season = try container.decode(Int.self, forKey: .Season)
+        let Name = try container.decode(String.self, forKey: .Name)
+        let Postion = try container.decode(String.self, forKey: .Position)
+        let FantasyPoints = try container.decode(Double.self, forKey: .FantasyPoints)
+        
+        self.PlayerID = PlayerID
+        self.Team = Team
+        self.Season = Season
+        self.Name = Name
+        self.Position = Postion
+        self.FantasyPoints = FantasyPoints
+    }
+    static func ==(lhs: SeasonProjection, rhs: SeasonProjection) -> Bool {
+    return
+        lhs.PlayerID == rhs.PlayerID &&
+        lhs.identifier == rhs.identifier &&
+        lhs.Team == rhs.Team &&
+        lhs.Season == rhs.Season &&
+        lhs.Name == rhs.Name &&
+        lhs.Position == rhs.Position &&
+        lhs.FantasyPoints == rhs.FantasyPoints
+        
+    }
+    func toAnyObject() -> Any {
+        
+        return [
+            "PlayerID": PlayerID,
+            "identifier": identifier,
+            "Team": Team ?? "No Team",
+            "Season": Season ?? 0,
+            "Name": Name ?? "Name not available",
+            "Position": Position ?? "Position Not Available",
+            "FantasyPoints": FantasyPoints ?? 0
+        ]
+    }
+    
+    init?(snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: AnyObject],
+        let identifier = value["identifier"] as? String,
+        let PlayerID = value["PlayerID"] as? Int,
+        let Team = value["Team"] as? String,
+        let Season = value["Season"] as? Int,
+        let Name = value["Name"] as? String,
+        let Postion = value["Position"] as? String,
+        let ByeWeek = value["ByeWeek"] as? Int,
+        let FantasyPoints = value["FantasyPoints"] as? Double
+            else {
+                return nil
+        }
+        self.identifier = identifier
+        self.PlayerID = PlayerID
+        self.Team = Team
+        self.Season = Season
+        self.Name = Name
+        self.Position = Postion
+        self.FantasyPoints = FantasyPoints
   }
+}
 
 struct GameProjection: Codable {
     var Team: String
