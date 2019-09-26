@@ -9,11 +9,10 @@
 import Foundation
 
 class FantasyIQController {
-    //  THE CORE DATA OBJECT WILL HAVE JUST A TEAM OF PLAYERS WITH POSITONS AND ID, BASIC INFO, IT CAN BE REFRESHED AND UPDATED
     var allFantasyPlayers: [AllPossiblePlayers] = []
-    var projectedSeasonStats: Player?
-    var projectedGameStats: Player?
-    var team: [Player] = []
+    var projectedSeasonStats: SeasonProjection?
+    var projectedGameStats: GameProjection?
+    var team: [SeasonProjection] = []
     var currentWeek: Int?
     var upComingWeek: Int?
     var currentPlayerGameStats: CurrentPlayerStats?
@@ -45,7 +44,7 @@ class FantasyIQController {
         }.resume()
         
     }
-    func fetchPlayerAndProjectedSeasonStats(playerName: String,completion: @escaping (Player?, Error?) -> Void = {_,_ in}) {
+    func fetchPlayerAndProjectedSeasonStats(playerName: String,completion: @escaping (SeasonProjection?, Error?) -> Void = {_,_ in}) {
         let player = allFantasyPlayers.filter{$0.Name == playerName}.first
         guard let id = player?.PlayerID else {return}
         let requestURL = fantasyDataBaseURL.appendingPathComponent("projections").appendingPathComponent("json").appendingPathComponent("PlayerSeasonProjectionStatsByPlayerID").appendingPathComponent("2019REG").appendingPathComponent("\(id)")
@@ -63,7 +62,7 @@ class FantasyIQController {
                 return
             }
             do {
-                let receivedData = try JSONDecoder().decode(Player.self, from: data)
+                let receivedData = try JSONDecoder().decode(SeasonProjection.self, from: data)
                 self.projectedSeasonStats = receivedData
                 self.team.append(receivedData)
                 completion(self.projectedSeasonStats, nil)
@@ -154,7 +153,7 @@ class FantasyIQController {
         }.resume()
     }
     
-    func fetchUpcomingWeek(playerID: Int, completion: @escaping(Player?,Error?) -> Void = {_,_ in}) {
+    func fetchProjectedGameStats(playerID: Int, completion: @escaping(GameProjection?,Error?) -> Void = {_,_ in}) {
         guard let week = currentWeek else {return}
         let requestURL = fantasyDataBaseURL.appendingPathComponent("projections").appendingPathComponent("json").appendingPathComponent("PlayerGameProjectionStatsByPlayerID").appendingPathComponent("2019REG").appendingPathComponent("\(week)").appendingPathComponent("\(playerID)")
            var request = URLRequest(url: requestURL)
@@ -171,7 +170,7 @@ class FantasyIQController {
                    return
                }
                do {
-                   self.projectedGameStats = try JSONDecoder().decode(Player.self, from: data)
+                   self.projectedGameStats = try JSONDecoder().decode(GameProjection.self, from: data)
                    completion(self.projectedGameStats, nil)
                } catch {
                    NSLog("Error decoding projected stats :\(error)")
@@ -181,17 +180,17 @@ class FantasyIQController {
            }.resume()
        }
     
-    func playerProjectedSeasonPoints(playerSeasonProjection: Player) -> Double {
+    func playerProjectedSeasonPoints(playerSeasonProjection: SeasonProjection) -> Double {
         guard let projectedFantasyPoints = playerSeasonProjection.FantasyPoints else {return 0}
         return projectedFantasyPoints
     }
     
-    func playerProjectedGamePoints(playerGameProjection: Player) -> Double {
+    func playerProjectedGamePoints(playerGameProjection: GameProjection) -> Double {
         guard let projectedFantasyPoints = playerGameProjection.FantasyPoints else {return 0}
         return projectedFantasyPoints
     }
     
-    func calculateDepthChartRankingForQB(team: [Player]) -> String {
+    func calculateDepthChartRankingForQB(team: [SeasonProjection]) -> String {
         let allQBs = team.filter{$0.Position!.contains("QB")}
         for qb in allQBs {
             guard let seasonFantasyPoints = qb.FantasyPoints else { NSLog("Error getting qb depth ranking");return ""}
@@ -207,7 +206,7 @@ class FantasyIQController {
     }
     
     
-    func calculateDepthChartRankingForWR(team: [Player]) -> String {
+    func calculateDepthChartRankingForWR(team: [SeasonProjection]) -> String {
         let allwrs = team.filter{$0.Position!.contains("WR")}
         for wr in allwrs {
             guard let seasonFantasyPoints = wr.FantasyPoints else { NSLog("Error getting WR depth ranking");return ""}
@@ -222,7 +221,7 @@ class FantasyIQController {
         return ""
     }
     
-    func calculateDepthChartRankingForRB(team: [Player]) -> String {
+    func calculateDepthChartRankingForRB(team: [SeasonProjection]) -> String {
         let allrbs = team.filter{$0.Position!.contains("RB")}
         for rb in allrbs {
             guard let seasonFantasyPoints = rb.FantasyPoints else { NSLog("Error getting RB depth ranking");return ""}
@@ -237,7 +236,7 @@ class FantasyIQController {
         return ""
     }
     
-    func calculateTradeCombinations(team: [Player]) -> String {
+    func calculateTradeCombinations(team: [SeasonProjection]) -> String {
         
         if calculateDepthChartRankingForQB(team: team) == "Weak" {
             return "Trade one high value player or two medium valued players for a QB"
@@ -264,7 +263,7 @@ class FantasyIQController {
                     return "\(player.Name) is having a breakout game!"
                 }
             }
-        
         return ""
         }
     }
+

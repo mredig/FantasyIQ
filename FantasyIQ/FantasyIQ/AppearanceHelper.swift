@@ -16,11 +16,9 @@ static var playerNeonBlue = #colorLiteral(red: 0.07450980392, green: 0.819607843
     
    
     static func setDarkAppearance() {
-        UITabBar.appearance().barTintColor = playerBlack
-        UITabBar.appearance().tintColor = .white
-        UITabBar.appearance().isTranslucent = false
-        UIView.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = playerBlack
-        UIButton.appearance().backgroundColor = playerNeonBlue
+        UINavigationBar.appearance().tintColor = playerNeonBlue
+        UINavigationBar.appearance().barTintColor = playerBlack
+        UINavigationBar.appearance().backgroundColor = playerBlack
         UITextField.appearance().backgroundColor = playerNeonBlue
         UITableView.appearance().backgroundColor = playerBlack
     }
