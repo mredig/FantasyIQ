@@ -58,7 +58,7 @@ class SeasonProjection: Codable, Equatable {
         let Name = try container.decode(String.self, forKey: .Name)
         let Postion = try container.decode(String.self, forKey: .Position)
         let FantasyPoints = try container.decode(Double.self, forKey: .FantasyPoints)
-        
+
         self.PlayerID = PlayerID
         self.Team = Team
         self.Season = Season
@@ -86,7 +86,7 @@ class SeasonProjection: Codable, Equatable {
             "Season": Season ?? 0,
             "Name": Name ?? "Name not available",
             "Position": Position ?? "Position Not Available",
-            "FantasyPoints": FantasyPoints ?? 0
+            "FantasyPoints": FantasyPoints ?? 0.0
         ]
     }
     
@@ -111,6 +111,29 @@ class SeasonProjection: Codable, Equatable {
         self.Position = Postion
         self.FantasyPoints = FantasyPoints
   }
+    
+    init?(team: [String:Any]) {
+          guard
+          let identifier = team["identifier"] as? String,
+          let PlayerID = team["PlayerID"] as? Int,
+          let Team = team["Team"] as? String,
+          let Season = team["Season"] as? Int,
+          let Name = team["Name"] as? String,
+          let Postion = team["Position"] as? String,
+          let ByeWeek = team["ByeWeek"] as? Int,
+          let FantasyPoints = team["FantasyPoints"] as? Double
+              else {
+                  return nil
+          }
+          self.identifier = identifier
+          self.PlayerID = PlayerID
+          self.Team = Team
+          self.Season = Season
+          self.Name = Name
+          self.Position = Postion
+          self.FantasyPoints = FantasyPoints
+    }
+    
 }
 
 struct GameProjection: Codable {
@@ -118,9 +141,9 @@ struct GameProjection: Codable {
     var PlayerID: Int?
     var Opponent: String
     var HomeOrAway: String
-    var Number: Int?
-    var Name: String
-    var Position: String
+   var Number: Int?
+ var Name: String
+ var Position: String
     var Activated: Int?
     var FantasyPoints: Double?
 }

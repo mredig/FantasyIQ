@@ -21,7 +21,7 @@ class AllPlayersTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppearanceHelper.style(button: addPlayersButton)
+    //    AppearanceHelper.style(button: addPlayersButton)
         guard let fantasyController = fantasyController else {return}
         fantasyController.fetchAllPlayers { (_, _) in
             DispatchQueue.main.async {
@@ -49,8 +49,6 @@ class AllPlayersTableViewController: UITableViewController {
         cell.cardView.backgroundColor = AppearanceHelper.playerBlack
         let player = fantasyController.allFantasyPlayers[indexPath.row]
         cell.buttonAction =  { (sender) in
-            self.count += 1
-            self.title = "You Have \(self.count) Players Selected"
             self.addedPlayer = player
             self.turnAddedPlayerToSeasonProjection(addedPlayer: player)
         }
@@ -59,32 +57,39 @@ class AllPlayersTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func addPlayersTapped(_ sender: UIButton) {
-        guard let fantasyController = fantasyController else {return}
-        for player in team {
-            fantasyController.addPlayerToFirebase(with: player) {
-            }
-        }
-        self.navigationController?.popViewController(animated: true)
-    }
     
     func turnAddedPlayerToSeasonProjection(addedPlayer: AllPossiblePlayers) {
+       
         guard let fantasyController = fantasyController, let name = addedPlayer.Name else {return}
         fantasyController.fetchPlayerAndProjectedSeasonStats(playerName: name) { (seasonprojection, error) in
             if let error = error {
                 NSLog("Error turning added player into season projection: \(error)")
                 return
             }
-            guard let teamPlayer = seasonprojection else {return}
-            self.team.append(teamPlayer)
+             self.turnAddedPlayerToGameProjection(addedPlayer: addedPlayer)
+            guard let player = seasonprojection, let points = seasonprojection?.FantasyPoints, let name = seasonprojection?.Name, let apiPlayerId = seasonprojection?.PlayerID, let position = seasonprojection?.Position, let season = seasonprojection?.Season, let team = seasonprojection?.Team else {return}
+            self.fantasyController?.createPlayer(fantasyPoints: points, name: name, playerID: Int16(apiPlayerId), position: position, season: Int16(season), team: team)
         }
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "UnwindSegue" {
-        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     
-    
-    
+    func turnAddedPlayerToGameProjection(addedPlayer: AllPossiblePlayers) {
+        guard let fantasyController = fantasyController else {return}
+         
+        fantasyController.fetchProjectedGameStats(playerID: addedPlayer.PlayerID) {projectedgamestats,_ in
+            guard let player = projectedgamestats,
+                let points = projectedgamestats?.FantasyPoints,
+                let name = projectedgamestats?.Name,
+                let playerAPIId = projectedgamestats?.PlayerID,
+                let position = projectedgamestats?.Position,
+                let team = projectedgamestats?.Team,
+            let activated = projectedgamestats?.Activated,
+            let homeAway = projectedgamestats?.HomeOrAway,
+            let opponent = projectedgamestats?.Opponent,
+            let number = projectedgamestats?.Number
+                 else {return}
+            self.fantasyController?.createPlayerGameProjection(fantasyPoints: points, acitvated: Int16(activated), homeAway: homeAway, name: name, number: Int16(number), opponent: opponent, playerID: Int16(playerAPIId), position: position, team: team)
+        }
+}
 }

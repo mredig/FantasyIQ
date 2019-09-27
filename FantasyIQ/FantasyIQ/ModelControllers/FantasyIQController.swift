@@ -13,11 +13,48 @@ class FantasyIQController {
     var allFantasyPlayers: [AllPossiblePlayers] = []
     var projectedSeasonStats: SeasonProjection?
     var projectedGameStats: GameProjection?
-    var team: [SeasonProjection] = []
+    var receivedPlayers: [SeasonProjection] = []
     var currentWeek: Int?
+    var receviedTeam: Team?
     var upComingWeek: Int?
     var currentPlayerGameStats: CurrentPlayerStats?
     let fantasyDataBaseURL = URL(string: "https://api.sportsdata.io/v3/nfl/")!
+    let baseURL = URL(string: "https://fantasyiq-d5291.firebaseio.com/")!
+    
+    
+    func createPlayer(fantasyPoints: Double,
+                      identifier: String = UUID().uuidString,
+                      name: String,
+                      playerID: Int16,
+                      position: String,
+                      season: Int16,
+                      team: String) {
+        let newPlayer = Player(name: name, fantasyPoints: fantasyPoints, playerID: playerID, position: position, season: season, identifier: identifier, team: team, context: CoreDataStack.shared.mainContext)
+        saveToCoreData()
+        
+    }
+    
+    func deletePlayer(player: Player) {
+        let moc = CoreDataStack.shared.mainContext
+        moc.delete(player)
+        saveToCoreData()
+    }
+    
+    func createPlayerGameProjection(fantasyPoints: Double, acitvated: Int16, homeAway: String, identifier: String = UUID().uuidString, name: String, number:Int16, opponent: String, playerID: Int16, position: String, team: String ) {
+        let newPlayerGameProjection = PlayerGame(name: name, fantasyPoints: fantasyPoints, playerID: playerID, position: position, activated: acitvated, identifier: identifier, team: team, opponent: opponent, number: number, homeAway: homeAway, context: CoreDataStack.shared.mainContext)
+        saveToCoreData()
+    }
+    
+    func saveToCoreData() {
+        let moc = CoreDataStack.shared.mainContext
+        do {
+            try moc.save()
+        }catch {
+            NSLog("Error saving to core data \(error)")
+                moc.reset()
+        }
+    }
+    
     
     func fetchAllPlayers(completion: @escaping ([AllPossiblePlayers]?, Error?) -> Void = {_,_ in}) {
         let requestURL = fantasyDataBaseURL.appendingPathComponent("stats").appendingPathComponent("json")  .appendingPathComponent("FantasyPlayers")
@@ -190,13 +227,12 @@ class FantasyIQController {
         return projectedFantasyPoints
     }
     
-    func calculateDepthChartRankingForQB(team: [SeasonProjection]) -> String {
-        let allQBs = team.filter{$0.Position!.contains("QB")}
+    func calculateDepthChartRankingForQB(team: [Player]) -> String {
+        let allQBs = team.filter{$0.position!.contains("QB")}
         for qb in allQBs {
-            guard let seasonFantasyPoints = qb.FantasyPoints else { NSLog("Error getting qb depth ranking");return ""}
-            if seasonFantasyPoints >= 300.0 && allQBs.count >= 2 {
+            if qb.fantasyPoints >= 300.0 && allQBs.count >= 2 {
                 return "Strong"
-            } else if seasonFantasyPoints >= 200.0 && seasonFantasyPoints < 300 && allQBs.count < 2 {
+            } else if qb.fantasyPoints >= 200.0 {
                 return "Medium"
             } else {
                 return "Weak"
@@ -206,13 +242,13 @@ class FantasyIQController {
     }
     
     
-    func calculateDepthChartRankingForWR(team: [SeasonProjection]) -> String {
-        let allwrs = team.filter{$0.Position!.contains("WR")}
+    func calculateDepthChartRankingForWR(team: [Player]) -> String {
+        let allwrs = team.filter{$0.position!.contains("WR")}
         for wr in allwrs {
-            guard let seasonFantasyPoints = wr.FantasyPoints else { NSLog("Error getting WR depth ranking");return ""}
-            if seasonFantasyPoints >= 250.0 && allwrs.count >= 2 {
+          
+            if wr.fantasyPoints >= 250.0 && allwrs.count >= 2 {
                 return "Strong"
-            } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allwrs.count < 2 && allwrs.count > 0 {
+            } else if wr.fantasyPoints >= 150.0 && allwrs.count < 2 && allwrs.count > 0 {
                 return "Medium"
             } else {
                 return "Weak"
@@ -221,13 +257,13 @@ class FantasyIQController {
         return ""
     }
     
-    func calculateDepthChartRankingForRB(team: [SeasonProjection]) -> String {
-        let allrbs = team.filter{$0.Position!.contains("RB")}
+    func calculateDepthChartRankingForRB(team: [Player]) -> String {
+        let allrbs = team.filter{($0.position?.contains("RB"))!}
         for rb in allrbs {
-            guard let seasonFantasyPoints = rb.FantasyPoints else { NSLog("Error getting RB depth ranking");return ""}
-            if seasonFantasyPoints >= 250.0 && allrbs.count >= 2 {
+            
+            if rb.fantasyPoints >= 250.0 && allrbs.count >= 2 {
                 return "Strong"
-            } else if seasonFantasyPoints >= 150.0 && seasonFantasyPoints < 300 && allrbs.count < 2 && allrbs.count > 0 {
+            } else if rb.fantasyPoints >= 150.0 && allrbs.count < 2 && allrbs.count > 0 {
                 return "Medium"
             } else {
                 return "Weak"
@@ -236,7 +272,7 @@ class FantasyIQController {
         return ""
     }
     
-    func calculateTradeCombinations(team: [SeasonProjection]) -> String {
+    func calculateTradeCombinations(team: [Player]) -> String {
         
         if calculateDepthChartRankingForQB(team: team) == "Weak" {
             return "Trade one high value player or two medium valued players for a QB"
@@ -265,30 +301,36 @@ class FantasyIQController {
         return ""
     }
     
-//    func createTeam(with team: [SeasonProjection], completion: @escaping () -> Void) {
-//        let ref = Database.database().reference(withPath: "Team")
-//        let team = Team(identifier: UUID().uuidString, team: team)
-//        ref.setValue(team.toAnyObject())
-//        completion()
-//    }
+    func createTeam(with team: [SeasonProjection], completion: @escaping () -> Void) {
+        let id = UUID().uuidString
+        let ref = Database.database().reference(withPath: "Team").child("\(id)").child("players")
+        let userTeam = Team(identifier: id, team: team)
+        ref.setValue(userTeam.toAnyObject()) { (_, _) in
+              completion()
+        }
+    }
     
-    func fetchTeam(completion: @escaping () -> Void) {
+    func fetchTeams(completion: @escaping () -> Void) {
         let ref = Database.database().reference(withPath: "Team")
         ref.observe(.value, with: { snapshot in
-            for playerNode in snapshot.children {
-                if let dataSnap = playerNode as? DataSnapshot,
-                    let player = SeasonProjection(snapshot: dataSnap) {
-                    self.team.append(player)
+            for teamNode in snapshot.children {
+                if let dataSnap = teamNode as? DataSnapshot,
+                    let team = Team(snapshot: dataSnap),
+                    let players = team.players {
+                    self.receivedPlayers = players
+                    self.receviedTeam = team
                 }
             }
             completion()
         })
     }
-    
-    func addPlayerToFirebase(with player: SeasonProjection, completion: @escaping () -> Void) {
-        let ref = Database.database().reference(withPath: "Team/\(player.identifier)")
-        ref.setValue(player.toAnyObject())
-        completion()
+    func addPlayerToFirebase(team: Team, with player: SeasonProjection, completion: @escaping () -> Void) {
+        guard let id = team.identifier else {return
+        }
+        let ref = Database.database().reference(withPath: "Team").child(id).child("players")
+        ref.setValue(player.toAnyObject()) { (_, _) in
+             completion()
+        }
     }
 }
 

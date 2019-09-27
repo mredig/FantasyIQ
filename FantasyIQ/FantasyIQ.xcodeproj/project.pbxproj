@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		1E659561EE2BFFFCAC86B76E /* Pods_FantasyIQTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7512C91AB459C577E4AC2019 /* Pods_FantasyIQTests.framework */; };
 		611F05BA61699089CC3F065C /* Pods_FantasyIQ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD41E3ECFF33B19CB6112346 /* Pods_FantasyIQ.framework */; };
+		EFA97980233E6B2E0061DA5D /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EFA9797E233E6B2E0061DA5D /* User.xcdatamodeld */; };
+		EFA97982233E6CDD0061DA5D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA97981233E6CDD0061DA5D /* User+Convenience.swift */; };
 		EFCD79CD233BC7E00099BBCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79CB233BC7E00099BBCB /* SceneDelegate.swift */; };
 		EFCD79CE233BC7E00099BBCB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79CC233BC7E00099BBCB /* ContentView.swift */; };
 		EFCD79D0233C09950099BBCB /* AllPlayersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79CF233C09950099BBCB /* AllPlayersTableViewController.swift */; };
 		EFCD79D2233C0BCA0099BBCB /* AllPlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79D1233C0BCA0099BBCB /* AllPlayersTableViewCell.swift */; };
 		EFCD79D4233CE1540099BBCB /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79D3233CE1540099BBCB /* Team.swift */; };
 		EFCD79D6233D16270099BBCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFCD79D5233D16270099BBCB /* GoogleService-Info.plist */; };
+		EFCD79D8233D8F130099BBCB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCD79D7233D8F130099BBCB /* CoreDataStack.swift */; };
 		EFF425D62339694A0047A815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF425D52339694A0047A815 /* AppDelegate.swift */; };
 		EFF425DC2339694D0047A815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF425DB2339694D0047A815 /* Assets.xcassets */; };
 		EFF425DF2339694D0047A815 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFF425DE2339694D0047A815 /* Preview Assets.xcassets */; };
@@ -56,12 +59,15 @@
 		AF4059E10E3305B2E7A63587 /* Pods-FantasyIQ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantasyIQ.release.xcconfig"; path = "Target Support Files/Pods-FantasyIQ/Pods-FantasyIQ.release.xcconfig"; sourceTree = "<group>"; };
 		BD41E3ECFF33B19CB6112346 /* Pods_FantasyIQ.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyIQ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BD8A285AAEA2905AE2328C /* Pods_FantasyIQUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantasyIQUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFA9797F233E6B2E0061DA5D /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		EFA97981233E6CDD0061DA5D /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
 		EFCD79CB233BC7E00099BBCB /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EFCD79CC233BC7E00099BBCB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFCD79CF233C09950099BBCB /* AllPlayersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPlayersTableViewController.swift; sourceTree = "<group>"; };
 		EFCD79D1233C0BCA0099BBCB /* AllPlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPlayersTableViewCell.swift; sourceTree = "<group>"; };
 		EFCD79D3233CE1540099BBCB /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		EFCD79D5233D16270099BBCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EFCD79D7233D8F130099BBCB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EFF425D22339694A0047A815 /* FantasyIQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FantasyIQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF425D52339694A0047A815 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFF425DB2339694D0047A815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,7 +213,10 @@
 			isa = PBXGroup;
 			children = (
 				EFF4260D233991340047A815 /* Player.swift */,
+				EFA97981233E6CDD0061DA5D /* User+Convenience.swift */,
 				EFCD79D3233CE1540099BBCB /* Team.swift */,
+				EFA9797E233E6B2E0061DA5D /* User.xcdatamodeld */,
+				EFCD79D7233D8F130099BBCB /* CoreDataStack.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -463,8 +472,11 @@
 			files = (
 				EFCD79D0233C09950099BBCB /* AllPlayersTableViewController.swift in Sources */,
 				EFF425D62339694A0047A815 /* AppDelegate.swift in Sources */,
+				EFA97980233E6B2E0061DA5D /* User.xcdatamodeld in Sources */,
 				EFCD79CD233BC7E00099BBCB /* SceneDelegate.swift in Sources */,
+				EFCD79D8233D8F130099BBCB /* CoreDataStack.swift in Sources */,
 				EFCD79CE233BC7E00099BBCB /* ContentView.swift in Sources */,
+				EFA97982233E6CDD0061DA5D /* User+Convenience.swift in Sources */,
 				EFCD79D2233C0BCA0099BBCB /* AllPlayersTableViewCell.swift in Sources */,
 				EFF4261B233B3D880047A815 /* AppearanceHelper.swift in Sources */,
 				EFF42612233991770047A815 /* FantasyIQController.swift in Sources */,
@@ -802,6 +814,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EFA9797E233E6B2E0061DA5D /* User.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EFA9797F233E6B2E0061DA5D /* User.xcdatamodel */,
+			);
+			currentVersion = EFA9797F233E6B2E0061DA5D /* User.xcdatamodel */;
+			path = User.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EFF425CA2339694A0047A815 /* Project object */;
 }
